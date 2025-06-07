@@ -1,0 +1,21 @@
+<div class="container">
+    <form class="form-box" #frm="ngForm">
+        <h2>Calculadora</h2>
+        <label>Numero 1</label>
+        <input type="number" name="numero1" id="numero1" [(ngModel)]="numero1">
+
+        <label>Numero 2</label>
+        <input type="number" name="numero2" id="numero2"[(ngModel)]="numero2">
+        <button type="button" (click)="soma()"> somar </button>
+        <button type="button" (click)="subtracao()"> diminuir </button>
+        <button type="button" (click)="multiplicacao()"> multiplicar </button>
+        <button type="button" (click)="divisao()"> dividir </button>
+        
+      
+        <div class="result-display">
+            <p>Resultado: <span id="result">{{resultado}}</span></p>
+        </div>
+    </form>
+
+    
+</div>
