@@ -21,6 +21,8 @@ import { CommonModule } from '@angular/common';
 })
 export class ConsultaComponent implements OnInit{
 
+
+  nomeBusca: string = '';
   listaCliente: Cliente[] = [];
   colunas: String[] = ["id","nome","cpf","dataNascimento","email"] 
 
@@ -29,6 +31,10 @@ export class ConsultaComponent implements OnInit{
   }
   ngOnInit(){
     this.listaCliente = this.service.pesquisarCliente('');
+  }
+
+  pesquisar(){
+    this.listaCliente= this.service.pesquisarCliente(this.nomeBusca)
   }
 
 
