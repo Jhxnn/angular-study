@@ -11,6 +11,9 @@ import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { BrasilapiService } from '../brasilapi.service';
+import { Estado, Municipio } from '../brasil.model';
+import { ListFormat } from 'typescript';
 
 
 @Component({
@@ -38,8 +41,11 @@ export class CadastroComponent implements OnInit{
   cliente:Cliente = Cliente.newCliente();
   atualizando: boolean = false;
   snackBar = inject(MatSnackBar)
+  estados: Estado[] = []
+  municipios: Municipio[] = []
 
-  constructor(private service : ClienteService, private route: ActivatedRoute, private router: Router){
+
+  constructor(private service : ClienteService, private route: ActivatedRoute, private router: Router, private brasilApi: BrasilapiService){
 
   }
   ngOnInit(): void {
@@ -55,6 +61,7 @@ export class CadastroComponent implements OnInit{
            }
         }
       })
+    this.carregarUfs()
   }
 
   salvar(){
@@ -71,5 +78,12 @@ export class CadastroComponent implements OnInit{
   }
    mostrarMensagem(mensagem: string){
       this.snackBar.open(mensagem, 'OK')
+    }
+
+    carregarUfs(){
+      this.brasilApi.listarUfs().subscribe({
+        next: listaEstado => console.log("listaEstado ", listaEstado),
+        error: error => console.log(error)
+      })
     }
 }
