@@ -41,4 +41,20 @@ export class ClienteService {
     }
     return clientes.filter(cliente => cliente.nome?.indexOf(nome) !== -1)
   }
+  atualizar(cliente: Cliente){
+    const clientes = this.obterStorage()
+    clientes.forEach(c => {
+      if(c.id === cliente.id){
+        Object.assign(c, cliente)
+        localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(clientes))
+      }
+    });
+  }
+
+  deletar(cliente: Cliente){
+    let clientes = this.obterStorage()
+    clientes = clientes.filter(c => c.id !== cliente.id)
+    localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(clientes))
+
+  }
 }
