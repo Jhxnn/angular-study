@@ -22,3 +22,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .ml-5{
     margin-left: 5px;
 }
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #cfd8dc; /* cor mais clara ao passar o mouse */
+}
+
+mat-icon {
+  margin-right: 4px;
+}

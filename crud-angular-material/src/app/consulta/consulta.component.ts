@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, inject } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from "@angular/material/card"
@@ -11,6 +11,8 @@ import {MatTableModule} from "@angular/material/table"
 import { Cliente } from '../cadastro/cliente';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar'
+
 
 
 
@@ -23,10 +25,11 @@ import { Router } from '@angular/router';
 })
 export class ConsultaComponent implements OnInit{
 
-
   nomeBusca: string = '';
   listaCliente: Cliente[] = [];
   colunas: String[] = ["id","nome","cpf","dataNascimento","email","acoes"] 
+  snackBar = inject(MatSnackBar)
+
 
   constructor(private service: ClienteService, private router: Router){
 
@@ -48,7 +51,11 @@ export class ConsultaComponent implements OnInit{
   }
   deletar(cliente: Cliente){
     this.service.deletar(cliente)
+    this.mostrarMensagem("Deletado com sucesso!")
     this.ngOnInit()
+  }
+  mostrarMensagem(mensagem: string){
+    this.snackBar.open(mensagem, "Ok")
   }
 
 

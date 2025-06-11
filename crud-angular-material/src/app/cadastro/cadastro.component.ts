@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, inject} from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from "@angular/material/card"  
@@ -6,17 +6,30 @@ import {MatFormField, MatLabel} from "@angular/material/form-field"
 import {MatInputModule} from "@angular/material/input"
 import {MatIconModule} from '@angular/material/icon'
 import {MatButtonModule} from '@angular/material/button'
+import {MatSnackBar} from '@angular/material/snack-bar'
 import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { query } from 'express';
-
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [FlexLayoutModule, MatCardModule,FormsModule, MatFormField, MatLabel, MatInputModule,MatIconModule,MatButtonModule],
+  imports: [
+    FlexLayoutModule, 
+    MatCardModule,
+    FormsModule, 
+    MatFormField, 
+    MatLabel, 
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+     NgxMaskDirective],
+    providers:[
+      provideNgxMask()
+    ],
+
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.scss'
 })
@@ -24,6 +37,7 @@ export class CadastroComponent implements OnInit{
 
   cliente:Cliente = Cliente.newCliente();
   atualizando: boolean = false;
+  snackBar = inject(MatSnackBar)
 
   constructor(private service : ClienteService, private route: ActivatedRoute, private router: Router){
 
@@ -46,10 +60,16 @@ export class CadastroComponent implements OnInit{
   salvar(){
     if(!this.atualizando){
       this.service.salvar(this.cliente)
+      this.mostrarMensagem("Salvo com sucesso")
     this.cliente = Cliente.newCliente()
     }else{
       this.service.atualizar(this.cliente)
+      this.mostrarMensagem("Atualizado com sucesso")
       this.router.navigate(["/consulta"])
     }
+   
   }
+   mostrarMensagem(mensagem: string){
+      this.snackBar.open(mensagem, 'OK')
+    }
 }
