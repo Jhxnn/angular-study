@@ -43,9 +43,22 @@
                         <div fxLayout="column" fxFlex="400px">
                             <mat-form-field class="full-width">
                                 <mat-label>UF: *</mat-label>
-                                <mat-select>
+                                <mat-select (selectionChange)="carregarMunicipios($event)" [(value)]="cliente.uf">
                                     <mat-option *ngFor="let uf of estados" [value]="uf.sigla">
                                         {{ uf.sigla }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>    
+                    
+                    </div>
+                     <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+                        <div fxLayout="column" fxFlex="400px">
+                            <mat-form-field class="full-width">
+                                <mat-label>Municipio: *</mat-label>
+                                <mat-select [(value)]="cliente.municipio">
+                                    <mat-option *ngFor="let m of municipios" [value]="m.nome">
+                                        {{ m.nome }}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -68,7 +81,7 @@
                     </button>
                     }
                     
-                    <button mat-flat-button color="accent" class="ml-5">
+                    <button mat-flat-button color="accent" type="button" class="ml-5" (click)="limpar()">
                         <mat-icon fontIcon="backspace"></mat-icon>
                         Limpar
                     </button>

@@ -27,7 +27,7 @@ export class ConsultaComponent implements OnInit{
 
   nomeBusca: string = '';
   listaCliente: Cliente[] = [];
-  colunas: String[] = ["id","nome","cpf","dataNascimento","email","acoes"] 
+  colunas: String[] = ["id","nome","cpf","dataNascimento","email","uf","municipio","acoes"] 
   snackBar = inject(MatSnackBar)
 
 

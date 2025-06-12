@@ -6,6 +6,8 @@ export class Cliente{
     cpf?:String;
     dataNascimento?: String;
     email?:String
+    uf?: string
+    municipio?: string
     deletando: boolean = false
 
     static newCliente(){
