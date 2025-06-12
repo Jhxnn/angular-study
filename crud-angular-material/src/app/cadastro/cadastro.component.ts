@@ -13,8 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { BrasilapiService } from '../brasilapi.service';
 import { Estado, Municipio } from '../brasil.model';
-import { ListFormat } from 'typescript';
-
+import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
@@ -28,7 +28,9 @@ import { ListFormat } from 'typescript';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-     NgxMaskDirective],
+     NgxMaskDirective,
+    MatSelectModule,
+  CommonModule],
     providers:[
       provideNgxMask()
     ],
@@ -82,7 +84,7 @@ export class CadastroComponent implements OnInit{
 
     carregarUfs(){
       this.brasilApi.listarUfs().subscribe({
-        next: listaEstado => console.log("listaEstado ", listaEstado),
+        next: listaEstado => this.estados =  listaEstado,
         error: error => console.log(error)
       })
     }
