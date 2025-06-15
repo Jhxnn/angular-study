@@ -1,9 +1,19 @@
 {
-    "categorias":[
-        {
-            "id": 1,
-            "nome": "Restaurantes",
-            "descricao": "Lugares para alimentação"
-        }
-    ]
+  "categorias": [
+    {
+      "id": "1",
+      "nome": "Restaurantes",
+      "descricao": "Lugares para alimentação"
+    },
+    {
+      "id": "689f",
+      "nome": "Praias ",
+      "descricao": "lugar bom para tomar banho"
+    },
+    {
+      "id": "0233",
+      "nome": "Teste ",
+      "descricao": "teste"
+    }
+  ]
 }
