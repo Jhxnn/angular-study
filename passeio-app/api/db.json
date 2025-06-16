@@ -15,5 +15,15 @@
       "nome": "Teste ",
       "descricao": "teste"
     }
+  ],
+  "lugares": [
+    {
+      "id": "8221",
+      "nome": "Bar do zé",
+      "categoria": "Restaurantes",
+      "localizacao": "Santa Catariana",
+      "urlFoto": "uauau",
+      "avaliacao": "5"
+    }
   ]
 }
