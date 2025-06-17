@@ -27,7 +27,7 @@ export class LugarService {
      params = params.set('nome_like', String(nome))
     }
 
-    if(categoria){
+    if(categoria && categoria !== '-1'){
       params = params.set('categoria',String(categoria))
     }
         return this.http.get<Lugar[]>("http://localhost:3000/lugares",{
