@@ -13,6 +13,8 @@ export class GaleriaComponent implements OnInit{
 
   lugares: Lugar[] = []
   categorias: Categoria[] = []
+  nomeFiltro: string = ''
+  categoriaFiltro: string = ''
 
   constructor(private lugarService: LugarService, private categoriaService: CategoriaService){}
 
@@ -20,4 +22,24 @@ export class GaleriaComponent implements OnInit{
       this.lugarService.obterTodos().subscribe(lugar => this.lugares = lugar)
       this.categoriaService.listarCategorias().subscribe(categoria => this.categorias = categoria)
   }
+  getEstrelas(nota?: number): string[] {
+  const estrelas = [];
+  const notaValida = Math.floor(nota ?? 0);
+  const maxEstrelas = 5;
+
+  for (let i = 0; i < notaValida; i++) {
+    estrelas.push('cheia');
+  }
+  for (let i = notaValida; i < maxEstrelas; i++) {
+    estrelas.push('vazia');
+  }
+
+  return estrelas;
+}
+
+filtrar(){
+  this.lugarService.filtrarLugares(this.nomeFiltro, this.categoriaFiltro).subscribe( lugarFiltro => this.lugares = lugarFiltro)
+}
+
+
 }
