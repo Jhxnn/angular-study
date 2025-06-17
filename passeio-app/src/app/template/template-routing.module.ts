@@ -9,17 +9,29 @@ const routes: Routes = [
     children:[{
       path: 'categorias',
       loadChildren: () => import('../categorias/categorias.module').then(m => m.CategoriasModule),
-      pathMatch: 'full'
+      pathMatch: 'full',
+      data : {
+        titulo: "Categorias",
+        subtitulo: "Realize o cadastro de categorias"
+      }
     },
     {
       path: 'lugares',
       loadChildren: () => import('../lugares/lugares.module').then(m => m.LugaresModule),
-      pathMatch: 'full'
+      pathMatch: 'full',
+      data : {
+        titulo: "Lugares",
+        subtitulo: "Realize o cadastro de lugares"
+      }
     },
     {
       path: 'galeria',
       loadChildren: () => import('../galeria/galeria.module').then(m => m.GaleriaModule),
-      pathMatch: 'full'
+      pathMatch: 'full',
+      data : {
+        titulo: "Galeria",
+        subtitulo: "Lista de lugares"
+      }
     }
   ]
 
